@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZekeHub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at top left, #0f2027, #203a43, #2c5364);
+      color: #eee;
+      overflow: hidden;
+    }
+    header {
+      text-align: center;
+      padding: 2em;
+      border-bottom: 2px solid #39ff14;
+    }
+    h1 {
+      font-size: 3em;
+      color: #39ff14;
+      margin: 0;
+    }
+    h2 {
+      font-weight: 300;
+      color: #00ffff;
+      margin-top: 0.5em;
+    }
+    section {
+      max-width: 800px;
+      margin: 2em auto;
+      padding: 1.5em;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      border: 1px solid #39ff14;
+      text-align: center;
+    }
+    p {
+      font-size: 1.2em;
+      line-height: 1.6;
+    }
+    a {
+      color: #ff0080;
+      text-decoration: none;
+    }
+    a:hover {
+      text-shadow: 0 0 5px #ff0080;
+    }
+
+    /* 🐱 Floating Cat Style */
+    #cat {
+      position: absolute;
+      width: 80px;
+      pointer-events: none;
+      transition: transform 0.1s linear;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hi, I'm Zeke 👾</h1>
+    <h2>Game dev • Hardware tinker • Backend wizard</h2>
+  </header>
+
+  <section>
+    <p>I build immersive worlds, branded game systems, and playful hardware tools.  
+    Whether it's scripting for Roblox, crafting modular stat systems, or syncing Firebase with Turtle-powered flair,  
+    I turn logic into magic and code into adventure.</p>
+    <p>Check out my projects on <a href="https://github.com/zeke">GitHub</a> or follow me into the matrix 🕹️.</p>
+  </section>
+
+  <!-- 🐱 Cat Image -->
+  <img id="cat" src="https://upload.wikimedia.org/wikipedia/commons/1/16/Emojione_1F431.svg" alt="cat" />
+
+  <script>
+    const cat = document.getElementById("cat");
+
+    document.addEventListener("mousemove", (e) => {
+      cat.style.left = e.pageX + "px";
+      cat.style.top = e.pageY + "px";
+      cat.style.transform = "translate(-50%, -50%)";
+    });
+  </script>
+</body>
+</html>
