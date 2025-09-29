@@ -49,13 +49,13 @@
       text-shadow: 0 0 5px #ff0080;
     }
 
-    /* 🐱 Floating Cat Style */
-    #cat {
-      position: absolute;
-      width: 80px;
-      pointer-events: none;
-      transition: transform 0.1s linear;
-      z-index: 1000;
+    /* Online status style */
+    #status {
+      margin-top: 1.5em;
+      font-weight: bold;
+      font-size: 1.3em;
+      color: #39ff14;
+      text-shadow: 0 0 5px #39ff14;
     }
   </style>
 </head>
@@ -70,6 +70,49 @@
     Whether it's scripting for Roblox, crafting modular stat systems, or syncing Firebase with Turtle-powered flair,  
     I turn logic into magic and code into adventure.</p>
     <p>Check out my projects on <a href="https://github.com/zeke-youtube">GitHub</a> or follow me into the matrix 🕹️.</p>
+
+    <div id="status">Checking status...</div>
   </section>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDbTbchPyiNnvKs71EvwWCwH4nDj4aiVgI",
+      authDomain: "stauszeke.firebaseapp.com",
+      projectId: "stauszeke",
+      storageBucket: "stauszeke.firebasestorage.app",
+      messagingSenderId: "538781688263",
+      appId: "1:538781688263:web:e9988ce9a3de48f1bfb9e2",
+      measurementId: "G-ZY5L750BRS",
+      databaseURL: "https://stauszeke-default-rtdb.firebaseio.com"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const userId = "zeke";
+    const userStatusRef = ref(db, `/status/${userId}`);
+
+    const statusDiv = document.getElementById("status");
+
+    onValue(userStatusRef, (snapshot) => {
+      const val = snapshot.val();
+      if (!val || val.state !== "online") {
+        statusDiv.textContent = "🔴 Offline";
+        statusDiv.style.color = "#ff4d4d";
+        statusDiv.style.textShadow = "0 0 5px #ff4d4d";
+      } else {
+        statusDiv.textContent = "🟢 Online";
+        statusDiv.style.color = "#39ff14";
+        statusDiv.style.textShadow = "0 0 5px #39ff14";
+      }
+    }, (error) => {
+      statusDiv.textContent = "⚠️ Error loading status";
+      statusDiv.style.color = "orange";
+      console.error("Firebase read error:", error);
+    });
+  </script>
 </body>
 </html>
